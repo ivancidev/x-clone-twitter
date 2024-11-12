@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonts */
+@font-face {
+  font-family: 'InterRegular18';
+  src:
+    url('/fonts/Inter_18pt-Regular.ttf') format('ttf'),
+    url('/fonts/Inter_18pt-Regular.ttf') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterBold18';
+  src:
+    url('/fonts/Inter_18pt-Bold.ttf') format('ttf'),
+    url('/fonts/Inter_18pt-Bold.ttf') format('ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterSemiBold18';
+  src:
+    url('/fonts/Inter_18pt-SemiBold.ttf') format('ttf'),
+    url('/fonts/Inter_18pt-SemiBold.ttf') format('ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterRegular24';
+  src:
+    url('/fonts/Inter_24pt-Regular.ttf') format('ttf'),
+    url('/fonts/Inter_24pt-Regular.ttf') format('ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterRegular28';
+  src:
+    url('/fonts/Inter_28pt-Regular.ttf') format('ttf'),
+    url('/fonts/Inter_28pt-Regular.ttf') format('ttf');
+  font-weight: 600;
+  font-style: normal;
+}
