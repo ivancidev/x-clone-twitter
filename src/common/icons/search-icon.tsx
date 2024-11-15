@@ -1,8 +1,12 @@
-export const IconSearch = () => {
+interface IconSearchProps {
+  width: number;
+  height: number;
+}
+export const IconSearch = ({ width, height }: IconSearchProps) => {
   return (
     <svg
-      width="20"
-      height="20"
+      width={height}
+      height={width}
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

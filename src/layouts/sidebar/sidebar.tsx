@@ -21,7 +21,11 @@ export const Sidebar = () => {
       <div className="flex flex-col justify-between flex-1">
         <nav>
           <SidebarItem icon={<IconHome />} label="Home" to="/" isActive />
-          <SidebarItem icon={<IconSearch />} label="Explore" to="/explore" />
+          <SidebarItem
+            icon={<IconSearch width={20} height={20} />}
+            label="Explore"
+            to="/explore"
+          />
           <SidebarItem
             icon={<IconNotification />}
             label="Notifications"
@@ -40,7 +44,7 @@ export const Sidebar = () => {
         </nav>
         <SidebarProfile
           name="John Doe"
-          nickname= "johndoe"
+          nickname="johndoe"
           avatarUrl="https://i.pravatar.cc/150?img=68"
           to="/profile"
         />
