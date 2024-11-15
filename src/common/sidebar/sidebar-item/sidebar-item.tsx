@@ -7,6 +7,7 @@ interface SidebarItemProps {
   isActive?: boolean;
   to: string;
 }
+
 export const SidebarItem = ({
   icon,
   label,
@@ -16,10 +17,11 @@ export const SidebarItem = ({
   return (
     <Link
       to={to}
-      className={`flex items-center px-4 w-52 py-2 mt-2 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 ${isActive ? 'flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-200' : 'hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'}`}
+      className={`flex items-center w-52 px-4 py-2 mt-2 text-white transition-colors duration-300 transform rounded-md 
+                  ${isActive ? 'bg-gray-600' : 'hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-200'}`}
     >
-      {icon}
-      <span className="mx-4 font-medium">{label}</span>
+      <div className="mr-4">{icon}</div>{' '}
+      <span className="font-interRegular28 text-lg">{label}</span>
     </Link>
   );
 };

@@ -14,7 +14,7 @@ import {
 } from '../../common';
 export const Sidebar = () => {
   return (
-    <aside className="flex flex-col w-96 h-screen px-36 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+    <aside className="flex flex-col w-96 h-screen px-36 py-8 overflow-y-auto bg-twitter-dark">
       <a href="#">
         <img className="w-14" src={Logo} alt="" />
       </a>
@@ -40,6 +40,7 @@ export const Sidebar = () => {
         </nav>
         <SidebarProfile
           name="John Doe"
+          nickname= "johndoe"
           avatarUrl="https://i.pravatar.cc/150?img=68"
           to="/profile"
         />
