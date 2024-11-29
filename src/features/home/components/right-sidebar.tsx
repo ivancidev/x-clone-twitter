@@ -1,5 +1,5 @@
-import { FollowSuggestions, SearchBox, TrendsCard } from '../../common';
-import { PremiumCard } from './premium-card';
+import { FollowSuggestions, SearchBox, TrendsCard } from '../../../common';
+import { PremiumCard } from './cards/premium-card';
 
 export const RightSidebar = () => {
   return (
