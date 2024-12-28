@@ -13,6 +13,7 @@ import {
   SidebarProfile,
   Button,
 } from '../../common';
+import { AddPostIcon } from '../../common/icons/add-post-icon';
 export const Sidebar = () => {
   const [path, setPath] = useState(window.location.pathname);
 
@@ -20,12 +21,12 @@ export const Sidebar = () => {
     setPath(path);
   };
   return (
-    <aside className="flex flex-col w-96 h-screen px-36 py-8 overflow-y-auto bg-twitter-dark">
+    <aside className="flex flex-col h-screen px-4 py-8 overflow-y-auto bg-twitter-dark w-20 lg:w-[380px] lg:px-24 relative">
       <a href="#">
         <img className="w-14" src={Logo} alt="" />
       </a>
-      <div className="flex flex-col justify-between flex-1">
-        <nav>
+      <div className="flex flex-col justify-between items-center flex-1">
+        <nav className="space-y-2">
           <SidebarItem
             icon={<IconHome />}
             label="Home"
@@ -82,7 +83,14 @@ export const Sidebar = () => {
             onClick={() => handlePath('/groups')}
             path={path}
           />
-          <Button label="Post" onClick={() => console.log('Post')} />
+          <div className="flex justify-center cursor-pointer">
+            <div className="block lg:hidden">
+              <AddPostIcon />
+            </div>
+            <div className="hidden lg:block">
+              <Button label="Post" onClick={() => console.log('Post')} />
+            </div>
+          </div>
         </nav>
         <SidebarProfile
           name="John Doe"

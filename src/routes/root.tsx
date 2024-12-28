@@ -3,11 +3,10 @@ import { Sidebar } from '../layouts';
 
 export const Root = () => {
   return (
-    <div className="flex">
-      <Sidebar />
-      <main className="flex flex-1 justify-center items-center ">
-        Publicaciones
-      </main>
+    <div className="flex h-screen">
+      <div className="sticky top-0 h-screen">
+        <Sidebar />
+      </div>
       <Outlet />
     </div>
   );
