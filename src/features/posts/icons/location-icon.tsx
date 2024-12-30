@@ -4,7 +4,7 @@ export const LocationIcon = () => {
       fill="#1D9BF0"
       width="18px"
       height="18px"
-      viewBox="0 0 32 32"
+      viewBox="0 0 35 35"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       stroke="#1D9BF0"
