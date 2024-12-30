@@ -5,7 +5,7 @@ export const PremiumCard = () => {
       <p className="text-sm text-gray-600 font-interRegular18">
         Accede a funcionalidades exclusivas
       </p>
-      <button className="font-semibold mt-2 px-6 py-2 bg-button-btn-primary text-white rounded-full">
+      <button className="font-semibold mt-2 px-6 py-2 bg-slate-50 rounded-full">
         Suscribirse
       </button>
     </div>
