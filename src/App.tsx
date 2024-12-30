@@ -1,16 +1,8 @@
-import { RightSidebar } from './features';
-import { Sidebar } from './layouts';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes';
 
 function App() {
-  return (
-    <div className="flex">
-      <Sidebar />
-      <main className="flex flex-1 justify-center items-center ">
-        Publicaciones
-      </main>
-      <RightSidebar />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
