@@ -6,11 +6,9 @@ import '../styles/scrollbar.css';
 export const Hero = () => {
   return (
     <div className="flex h-screen overflow-hidden bg-twitter-dark">
-      <div className='border-gray-700 border-[1px]'>
+      <div className="overflow-y-auto scrollbar-hide border-[1px] border-gray-700">
         <CenteredTabs />
-        <div className="overflow-y-auto scrollbar-hide">
-          <Feed />
-        </div>
+        <Feed />
       </div>
       <div className="hidden lg:flex h-full">
         <RightSidebar />
