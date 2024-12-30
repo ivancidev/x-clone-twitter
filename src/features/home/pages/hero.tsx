@@ -8,7 +8,7 @@ export const Hero = () => {
       <div className=" overflow-y-auto scrollbar-hide">
         <Feed />
       </div>
-      <div className="h-full">
+      <div className="hidden lg:flex h-full">
         <RightSidebar />
       </div>
     </div>
