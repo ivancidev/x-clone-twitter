@@ -11,7 +11,7 @@ export default function CenteredTabs() {
     threshold: 10,
   });
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
@@ -25,6 +25,7 @@ export default function CenteredTabs() {
         top: 0,
         zIndex: 10,
         transition: 'background-color 0.3s ease',
+        borderBottom: '1px solid #38444d',
       }}
     >
       <Tabs
