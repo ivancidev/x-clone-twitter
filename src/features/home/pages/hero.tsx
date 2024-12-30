@@ -1,3 +1,4 @@
+import CenteredTabs from '../../../layouts/navbar/tab-ui';
 import { Feed } from '../../posts';
 import { RightSidebar } from '../components/right-sidebar';
 import '../styles/scrollbar.css';
@@ -5,8 +6,11 @@ import '../styles/scrollbar.css';
 export const Hero = () => {
   return (
     <div className="flex h-screen overflow-hidden bg-twitter-dark">
-      <div className=" overflow-y-auto scrollbar-hide">
-        <Feed />
+      <div className='border-gray-700 border-[1px]'>
+        <CenteredTabs />
+        <div className="overflow-y-auto scrollbar-hide">
+          <Feed />
+        </div>
       </div>
       <div className="hidden lg:flex h-full">
         <RightSidebar />
