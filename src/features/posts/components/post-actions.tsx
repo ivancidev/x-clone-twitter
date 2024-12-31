@@ -1,3 +1,4 @@
+import { StaticIcon } from '@/common/icons/static-icon';
 import { CommentIcon } from '../../../common/icons/comment-icon';
 import { ReactIcon } from '../../../common/icons/react-icon';
 import { RepostIcon } from '../../../common/icons/repost-icon';
@@ -24,7 +25,7 @@ export const PostActions = () => {
         onClick={() => console.log('Like')}
       />
       <Action
-        icon={<ReactIcon />}
+        icon={<StaticIcon />}
         label="276k"
         onClick={() => console.log('Like')}
       />
