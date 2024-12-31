@@ -1,4 +1,4 @@
-import { Stack, Textarea } from '@chakra-ui/react';
+import { ProgressCircleRoot, Stack, Textarea } from '@chakra-ui/react';
 import {
   EmojiIcon,
   GifIcon,
@@ -8,8 +8,20 @@ import {
   ScheduleIcon,
 } from '../icons';
 import { Button } from '@/common';
+import { useState } from 'react';
+import { ProgressCircleRing } from '@/components/ui/progress-circle';
+
+const maxCharacters = 200;
 
 export const PostForm = () => {
+  const [text, setText] = useState<string>('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+    console.log(text);
+  };
+
+  const charPercentage = Math.min((text.length / maxCharacters) * 100, 100);
   return (
     <section className="flex p-4 space-x-4">
       <img
@@ -20,6 +32,8 @@ export const PostForm = () => {
       <div className="flex flex-col w-full">
         <Stack>
           <Textarea
+            value={text}
+            onChange={handleChange}
             placeholder="What is happening?"
             variant="outline"
             style={{
@@ -54,12 +68,19 @@ export const PostForm = () => {
               <LocationIcon />
             </span>
           </div>
-          <Button
-            label="Post"
-            onClick={() => console.log('my post')}
-            isDesabled={true}
-            variant="secondary"
-          />
+          <div className="flex items-center space-x-4">
+            {text.length > 0 && (
+              <ProgressCircleRoot value={charPercentage} size="xs">
+                <ProgressCircleRing color="blue.500" />
+              </ProgressCircleRoot>
+            )}
+            <Button
+              label="Post"
+              onClick={() => console.log('my post')}
+              isDesabled={text.length === 0 || text.length > maxCharacters}
+              variant="secondary"
+            />
+          </div>
         </div>
       </div>
     </section>
