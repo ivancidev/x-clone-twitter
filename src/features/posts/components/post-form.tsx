@@ -33,7 +33,7 @@ export const PostForm = () => {
             }}
           />
         </Stack>
-        <div className="flex items-center justify-between mt-2">
+        <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <span className="cursor-pointer">
               <MediaIcon />
@@ -53,7 +53,6 @@ export const PostForm = () => {
             <span className="cursor-pointer">
               <LocationIcon />
             </span>
-            <GifIcon />
           </div>
           <Button
             label="Post"

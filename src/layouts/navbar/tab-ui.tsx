@@ -50,9 +50,12 @@ export default function CenteredTabs() {
           sx={{
             color: 'gray',
             fontWeight: 'normal',
+            textTransform: 'capitalize',
             '&.Mui-selected': {
               color: 'white',
               fontWeight: 'bold',
+              fontSize: '1rem',
+              textTransform: 'capitalize',
             },
           }}
         />
@@ -61,9 +64,12 @@ export default function CenteredTabs() {
           sx={{
             color: 'gray',
             fontWeight: 'normal',
+            textTransform: 'capitalize',
             '&.Mui-selected': {
               color: 'white',
               fontWeight: 'bold',
+              fontSize: '1rem',
+              textTransform: 'capitalize',
             },
           }}
         />

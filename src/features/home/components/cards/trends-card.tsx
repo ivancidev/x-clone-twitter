@@ -6,7 +6,7 @@ export const TrendsCard = () => {
   ];
 
   return (
-    <div className="p-4 bg-twitter-dark rounded-lg border-gray-700 border-[1px]">
+    <div className="p-4 bg-twitter-dark rounded-2xl border-gray-700 border-[1px]">
       <h3 className="font-bold text-lg mb-2 text-white font-interRegular28">Tendencias para ti</h3>
       {trends.map((trend, index) => (
         <div key={index} className="mb-2">
