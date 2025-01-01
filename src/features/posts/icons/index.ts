@@ -1,3 +1,4 @@
+export * from './close-icon';
 export * from './emoji-icon';
 export * from './gif-icon';
 export * from './index';
