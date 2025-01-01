@@ -3,7 +3,7 @@ import { IconSearch } from '../../common/icons';
 export const SearchBox = () => {
   return (
     <div className="relative mb-4">
-      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800">
+      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-900">
         <IconSearch width={15} height={15} />
       </span>
       <input

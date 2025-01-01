@@ -21,11 +21,11 @@ export const Sidebar = () => {
     setPath(path);
   };
   return (
-    <aside className="flex flex-col h-screen px-4 py-8 overflow-y-auto bg-twitter-dark w-20 lg:w-[380px] lg:px-24 relative">
+    <aside className="flex flex-col h-screen px-4 py-2 overflow-y-auto bg-twitter-dark w-20 lg:w-[380px] lg:px-24 relative">
       <a href="#">
         <img className="w-14" src={Logo} alt="" />
       </a>
-      <div className="flex flex-col justify-between items-center flex-1">
+      <div className="flex flex-col justify-around items-center h-full">
         <nav className="space-y-2">
           <SidebarItem
             icon={<IconHome />}
@@ -95,7 +95,7 @@ export const Sidebar = () => {
         <SidebarProfile
           name="John Doe"
           nickname="johndoe"
-          avatarUrl="https://i.pravatar.cc/150?img=68"
+          avatarUrl="https://randomuser.me/api/portraits/men/75.jpg"
           to="/profile"
         />
       </div>

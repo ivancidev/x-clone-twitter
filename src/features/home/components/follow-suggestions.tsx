@@ -13,9 +13,9 @@ export const FollowSuggestions = () => {
   ];
 
   return (
-    <div className="p-4 bg-twitter-dark rounded-lg border-gray-700 border-[1px]">
+    <div className="p-4 bg-twitter-dark rounded-2xl border-gray-700 border-[1px]">
       <h3 className="font-bold text-lg mb-2 text-white font-interRegular28">
-        A quién seguir
+        Who to follow
       </h3>
       {suggestions.map((suggestion, index) => (
         <div key={index} className="flex items-center mb-2">
@@ -30,8 +30,8 @@ export const FollowSuggestions = () => {
             </p>
             <p className="text-sm text-gray-500">{suggestion.handle}</p>
           </div>
-          <button className="ml-auto px-4 py-1 bg-white text-black rounded-full">
-            Seguir
+          <button className="ml-auto px-4 py-1 bg-white text-black rounded-full font-semibold">
+            Follow
           </button>
         </div>
       ))}
