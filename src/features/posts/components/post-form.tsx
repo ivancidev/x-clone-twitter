@@ -1,6 +1,6 @@
-import { ProgressCircleRoot, Stack, Textarea } from '@chakra-ui/react';
+import { ProgressCircleRoot } from '@chakra-ui/react';
+import { GiphyFetch } from '@giphy/js-fetch-api';
 import {
-  CloseIcon,
   EmojiIcon,
   GifIcon,
   LocationIcon,
@@ -11,14 +11,18 @@ import {
 import { Button } from '@/common';
 import { useState } from 'react';
 import { ProgressCircleRing } from '@/components/ui/progress-circle';
+import { TexTarea } from './textarea';
+import { GifsModal } from '../modals/gifs-modal';
+import { CarouselPreview } from './carousel';
 
+const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
 const maxCharacters = 200;
 const maxImages = 4;
 
 export const PostForm = () => {
   const [text, setText] = useState<string>('');
-  const [, setFiles] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [isGifModalOpen, setGifModalOpen] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -27,18 +31,13 @@ export const PostForm = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.target.files;
     if (selectedFiles && selectedFiles.length > 0) {
-      const newFiles = Array.from(selectedFiles);
-      const newPreviews = newFiles.map((file) => URL.createObjectURL(file));
+      const newFiles = Array.from(selectedFiles).map((file) =>
+        URL.createObjectURL(file),
+      );
 
-      setFiles((prevFiles) => {
-        const combinedFiles = [...prevFiles, ...newFiles];
-        return combinedFiles.slice(0, maxImages);
-      });
-
-      setImagePreviews((prevPreviews) => {
-        const combinedPreviews = [...prevPreviews, ...newPreviews];
-        return combinedPreviews.slice(0, maxImages);
-      });
+      setImagePreviews((prevPreviews) =>
+        [...prevPreviews, ...newFiles].slice(0, maxImages),
+      );
     }
   };
 
@@ -47,6 +46,20 @@ export const PostForm = () => {
       prevPreviews.filter((_, i) => i !== index),
     );
   };
+
+  const handleGifClick = (
+    gif: any,
+    e: React.SyntheticEvent<HTMLElement, Event>,
+  ) => {
+    e.preventDefault();
+
+    if (imagePreviews.length < maxImages) {
+      setImagePreviews((prev) => [...prev, gif.images.fixed_height.url]);
+    }
+    setGifModalOpen(false);
+  };
+
+  const fetchGifs = (offset: number) => gf.trending({ offset, limit: 10 });
 
   const charPercentage = Math.min((text.length / maxCharacters) * 100, 100);
   return (
@@ -57,41 +70,11 @@ export const PostForm = () => {
         className="w-12 h-12 rounded-full"
       />
       <div className="flex flex-col w-full">
-        <Stack>
-          <Textarea
-            value={text}
-            onChange={handleChange}
-            placeholder="What is happening?"
-            variant="outline"
-            style={{
-              backgroundColor: 'transparent',
-              borderColor: 'transparent',
-              color: 'white',
-              fontSize: '1.2rem',
-              fontWeight: 400,
-              resize: 'none',
-              outline: 'none',
-            }}
-          />
-        </Stack>
-        <div className="grid grid-cols-2 gap-2 mt-2">
-          {imagePreviews.map((preview, index) => (
-            <div className="relative w-full h-auto">
-              <img
-                key={index}
-                src={preview}
-                alt="Preview"
-                className="w-full h-auto object-cover rounded-lg"
-              />
-              <span
-                className="absolute top-0 right-0 rounded-full border-none cursor-pointer"
-                onClick={() => handleRemoveImage(index)}
-              >
-                <CloseIcon />
-              </span>
-            </div>
-          ))}
-        </div>
+        <TexTarea text={text} handleChange={handleChange} />
+        <CarouselPreview
+          imagePreviews={imagePreviews}
+          handleRemoveImage={handleRemoveImage}
+        />
         <div className="flex items-center justify-between mt-2">
           <div className="flex items-center space-x-4">
             <span>
@@ -106,7 +89,10 @@ export const PostForm = () => {
                 onChange={handleFileChange}
               />
             </span>
-            <span className="cursor-pointer">
+            <span
+              className="cursor-pointer"
+              onClick={() => setGifModalOpen(true)}
+            >
               <GifIcon />
             </span>
             <span className="cursor-pointer">
@@ -139,6 +125,12 @@ export const PostForm = () => {
           </div>
         </div>
       </div>
+      <GifsModal
+        open={isGifModalOpen}
+        onClose={() => setGifModalOpen(false)}
+        fetchGifs={fetchGifs}
+        handleGifClick={handleGifClick}
+      />
     </section>
   );
 };
