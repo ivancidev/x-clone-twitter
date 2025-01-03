@@ -1,15 +1,7 @@
+import { CloseButton } from '@/components/ui/close-button';
 import { Grid } from '@giphy/react-components';
-import { Box, Modal } from '@mui/material';
-
-interface GifsModalProps {
-  open: boolean;
-  onClose: () => void;
-  fetchGifs: (offset: number) => Promise<any>;
-  handleGifClick: (
-    gif: any,
-    e: React.SyntheticEvent<HTMLElement, Event>,
-  ) => void;
-}
+import { Box, IconButton, Modal } from '@mui/material';
+import { GifsModalProps } from '../interfaces/poll';
 
 export const GifsModal = ({
   open,
@@ -43,6 +35,17 @@ export const GifsModal = ({
           outline: 'none',
         }}
       >
+        <IconButton
+          sx={{
+            position: 'absolute',
+            top: 8,
+            right: 8,
+            color: 'white',
+          }}
+          onClick={onClose}
+        >
+          <CloseButton />
+        </IconButton>
         <h2 className="text-center font-interBold18 mb-2">Selecciona un GIF</h2>
         <Grid
           width={400}

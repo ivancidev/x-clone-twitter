@@ -7,11 +7,8 @@ import 'swiper/css';
 // @ts-ignore
 import 'swiper/css/navigation';
 import '../styles/carousel.css';
+import { CarouselProps } from '../interfaces/poll';
 
-interface CarouselProps {
-  imagePreviews: string[];
-  handleRemoveImage: (index: number) => void;
-}
 export const CarouselPreview = ({
   imagePreviews,
   handleRemoveImage,
