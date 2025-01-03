@@ -1,7 +1,6 @@
 import { ProgressCircleRoot } from '@chakra-ui/react';
 import { GiphyFetch } from '@giphy/js-fetch-api';
 import {
-  EmojiIcon,
   GifIcon,
   LocationIcon,
   MediaIcon,
@@ -16,6 +15,7 @@ import { GifsModal } from '../modals/gifs-modal';
 import { CarouselPreview } from './carousel';
 import { PollData } from '../interfaces/poll';
 import { PollModal } from '../modals/poll-modal';
+import { EmojiPickerComponent } from './emoji-picker';
 
 const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
 const maxCharacters = 200;
@@ -26,9 +26,14 @@ export const PostForm = () => {
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const [isGifModalOpen, setGifModalOpen] = useState<boolean>(false);
   const [isPollModalOpen, setPollModalOpen] = useState<boolean>(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
+  };
+
+  const handleEmojiClick = (emojiObject: any) => {
+    setText((prev) => prev + emojiObject.emoji);
   };
 
   const handlePollSubmit = (data: PollData) => {
@@ -109,15 +114,13 @@ export const PostForm = () => {
             >
               <PollIcon />
             </span>
-            <span className="cursor-pointer">
-              <EmojiIcon />
-            </span>
-            <span className="cursor-pointer">
-              <ScheduleIcon />
-            </span>
-            <span className="cursor-pointer">
-              <LocationIcon />
-            </span>
+            <EmojiPickerComponent
+              showEmoji={showEmojiPicker}
+              setShowEmoji={setShowEmojiPicker}
+              handleEmojiClick={handleEmojiClick}
+            />
+            <ScheduleIcon />
+            <LocationIcon />
           </div>
           <div className="flex items-center space-x-4">
             {text.length > 0 && (
