@@ -1,20 +1,20 @@
 export const LocationIcon = () => {
   return (
     <svg
-      fill="#1D9BF0"
+      fill="#606060"
       width="18px"
       height="18px"
       viewBox="0 0 35 35"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      stroke="#1D9BF0"
+      stroke="#606060"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0" />
+      <g id="SVGRepo_bgCarrier" strokeWidth="0" />
 
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
 
       <g id="SVGRepo_iconCarrier">

@@ -52,7 +52,7 @@ export const PollModal = ({ isOpen, onClose, onSubmit }: PollModalProps) => {
             position: 'absolute',
             top: 8,
             right: 8,
-            color: 'white'
+            color: 'white',
           }}
           onClick={onClose}
         >
