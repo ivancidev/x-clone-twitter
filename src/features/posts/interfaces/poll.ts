@@ -20,7 +20,7 @@ export interface PollModalProps {
 export interface GifsModalProps {
   open: boolean;
   onClose: () => void;
-  fetchGifs: (offset: number) => Promise<any>;
+  fetchGifs: (offset: number, searchText:string) => Promise<any>;
   handleGifClick: (
     gif: any,
     e: React.SyntheticEvent<HTMLElement, Event>,

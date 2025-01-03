@@ -1,5 +1,4 @@
 import { ProgressCircleRoot } from '@chakra-ui/react';
-import { GiphyFetch } from '@giphy/js-fetch-api';
 import {
   GifIcon,
   LocationIcon,
@@ -16,8 +15,8 @@ import { CarouselPreview } from './carousel';
 import { PollData } from '../interfaces/poll';
 import { PollModal } from '../modals/poll-modal';
 import { EmojiPickerComponent } from './emoji-picker';
+import { fetchGifs } from '../services/fetch-gifs';
 
-const gf = new GiphyFetch(import.meta.env.VITE_GIPHY_API_KEY);
 const maxCharacters = 200;
 const maxImages = 4;
 
@@ -71,8 +70,6 @@ export const PostForm = () => {
     }
     setGifModalOpen(false);
   };
-
-  const fetchGifs = (offset: number) => gf.trending({ offset, limit: 10 });
 
   const charPercentage = Math.min((text.length / maxCharacters) * 100, 100);
   return (
