@@ -16,6 +16,10 @@ import { PollData } from '../interfaces/poll';
 import { PollModal } from '../modals/poll-modal';
 import { EmojiPickerComponent } from './emoji-picker';
 import { fetchGifs } from '../services/fetch-gifs';
+import {
+  createPost,
+  uploadImagesToCloudinary,
+} from '../services/cloudinary-service';
 
 const maxCharacters = 200;
 const maxImages = 4;
@@ -23,6 +27,7 @@ const maxImages = 4;
 export const PostForm = () => {
   const [text, setText] = useState<string>('');
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [imagesToUpload, setImagesToUpload] = useState<File[]>([]);
   const [isGifModalOpen, setGifModalOpen] = useState<boolean>(false);
   const [isPollModalOpen, setPollModalOpen] = useState<boolean>(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
@@ -43,12 +48,15 @@ export const PostForm = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.target.files;
     if (selectedFiles && selectedFiles.length > 0) {
-      const newFiles = Array.from(selectedFiles).map((file) =>
-        URL.createObjectURL(file),
-      );
+      const newFiles = Array.from(selectedFiles);
+      const newPreviews = newFiles.map((file) => URL.createObjectURL(file));
 
       setImagePreviews((prevPreviews) =>
-        [...prevPreviews, ...newFiles].slice(0, maxImages),
+        [...prevPreviews, ...newPreviews].slice(0, maxImages),
+      );
+
+      setImagesToUpload((prevFiles) =>
+        [...prevFiles, ...newFiles].slice(0, maxImages),
       );
     }
   };
@@ -57,6 +65,8 @@ export const PostForm = () => {
     setImagePreviews((prevPreviews) =>
       prevPreviews.filter((_, i) => i !== index),
     );
+
+    setImagesToUpload((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
 
   const handleGifClick = (
@@ -67,8 +77,22 @@ export const PostForm = () => {
 
     if (imagePreviews.length < maxImages) {
       setImagePreviews((prev) => [...prev, gif.images.fixed_height.url]);
+
+      setImagesToUpload((prev) => [...prev, gif.images.fixed_height.url]);
     }
     setGifModalOpen(false);
+  };
+
+  const handlePostSubmit = async () => {
+    try {
+      const uploaderUrls = await uploadImagesToCloudinary(imagesToUpload);
+      await createPost(text, uploaderUrls);
+      setText('');
+      setImagePreviews([]);
+      setImagesToUpload([]);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const charPercentage = Math.min((text.length / maxCharacters) * 100, 100);
@@ -129,7 +153,7 @@ export const PostForm = () => {
             )}
             <Button
               label="Post"
-              onClick={() => console.log('my post')}
+              onClick={handlePostSubmit}
               isDesabled={text.length === 0 || text.length > maxCharacters}
               variant="secondary"
             />
