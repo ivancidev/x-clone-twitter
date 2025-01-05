@@ -15,7 +15,7 @@ export const Button = ({
     <button
       onClick={onClick}
       disabled={isDesabled}
-      className={`ml-4 mt-2 ${variantClasses} font-semibold bg-slate-50 rounded-3xl hover:bg-slate-200 text-black
+      className={`${variantClasses} font-semibold bg-slate-50 rounded-3xl hover:bg-slate-200 text-black
       ${isDesabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
       `}
     >

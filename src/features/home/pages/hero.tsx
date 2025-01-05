@@ -6,9 +6,9 @@ import '../styles/scrollbar.css';
 
 export const Hero = () => {
   return (
-    <div className="flex h-screen bg-twitter-dark overflow-hidden">
-      <div className="flex flex-1 overflow-y-auto scrollbar-hide">
-        <div className="flex-1 border-[1px] border-gray-700">
+    <div className="flex flex-col lg:flex-row h-screen bg-twitter-dark overflow-hidden">
+      <div className="flex flex-1 overflow-y-auto scrollbar-hide bg-twitter-dark">
+        <div className="flex-1 w-full border-[1px] border-gray-700 bg-twitter-dark">
           <CenteredTabs />
           <PostForm />
           <Feed />
