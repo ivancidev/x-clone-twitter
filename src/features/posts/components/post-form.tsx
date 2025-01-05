@@ -16,6 +16,10 @@ import { PollData } from '../interfaces/poll';
 import { PollModal } from '../modals/poll-modal';
 import { EmojiPickerComponent } from './emoji-picker';
 import { fetchGifs } from '../services/fetch-gifs';
+import {
+  createPost,
+  uploadImagesToCloudinary,
+} from '../services/cloudinary-service';
 
 const maxCharacters = 200;
 const maxImages = 4;
@@ -23,6 +27,7 @@ const maxImages = 4;
 export const PostForm = () => {
   const [text, setText] = useState<string>('');
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [imagesToUpload, setImagesToUpload] = useState<File[]>([]);
   const [isGifModalOpen, setGifModalOpen] = useState<boolean>(false);
   const [isPollModalOpen, setPollModalOpen] = useState<boolean>(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
@@ -43,12 +48,15 @@ export const PostForm = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.target.files;
     if (selectedFiles && selectedFiles.length > 0) {
-      const newFiles = Array.from(selectedFiles).map((file) =>
-        URL.createObjectURL(file),
-      );
+      const newFiles = Array.from(selectedFiles);
+      const newPreviews = newFiles.map((file) => URL.createObjectURL(file));
 
       setImagePreviews((prevPreviews) =>
-        [...prevPreviews, ...newFiles].slice(0, maxImages),
+        [...prevPreviews, ...newPreviews].slice(0, maxImages),
+      );
+
+      setImagesToUpload((prevFiles) =>
+        [...prevFiles, ...newFiles].slice(0, maxImages),
       );
     }
   };
@@ -57,6 +65,8 @@ export const PostForm = () => {
     setImagePreviews((prevPreviews) =>
       prevPreviews.filter((_, i) => i !== index),
     );
+
+    setImagesToUpload((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
 
   const handleGifClick = (
@@ -67,17 +77,31 @@ export const PostForm = () => {
 
     if (imagePreviews.length < maxImages) {
       setImagePreviews((prev) => [...prev, gif.images.fixed_height.url]);
+
+      setImagesToUpload((prev) => [...prev, gif.images.fixed_height.url]);
     }
     setGifModalOpen(false);
   };
 
+  const handlePostSubmit = async () => {
+    try {
+      const uploaderUrls = await uploadImagesToCloudinary(imagesToUpload);
+      await createPost(text, uploaderUrls);
+      setText('');
+      setImagePreviews([]);
+      setImagesToUpload([]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const charPercentage = Math.min((text.length / maxCharacters) * 100, 100);
   return (
-    <section className="flex p-4 space-x-4">
+    <section className="flex p-4 space-x-4 bg-twitter-dark w-full border-gray-700 border-[1px]">
       <img
         src="https://randomuser.me/api/portraits/men/75.jpg"
         alt="User Avatar"
-        className="w-12 h-12 rounded-full"
+        className="w-10 h-10 rounded-full sm:h-12 sm:w-12"
       />
       <div className="flex flex-col w-full">
         <TexTarea text={text} handleChange={handleChange} />
@@ -86,7 +110,7 @@ export const PostForm = () => {
           handleRemoveImage={handleRemoveImage}
         />
         <div className="flex items-center justify-between mt-2">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <span>
               <label htmlFor="file-upload" className="cursor-pointer">
                 <MediaIcon />
@@ -119,7 +143,7 @@ export const PostForm = () => {
             <ScheduleIcon />
             <LocationIcon />
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 mr-12 md:mr-0">
             {text.length > 0 && (
               <ProgressCircleRoot value={charPercentage} size="xs">
                 <ProgressCircleRing
@@ -129,7 +153,7 @@ export const PostForm = () => {
             )}
             <Button
               label="Post"
-              onClick={() => console.log('my post')}
+              onClick={handlePostSubmit}
               isDesabled={text.length === 0 || text.length > maxCharacters}
               variant="secondary"
             />

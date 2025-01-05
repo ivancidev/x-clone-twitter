@@ -9,14 +9,14 @@ export const StaticIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 50.00 50.00"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0" fill="#D9D9D9"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0" fill="#D9D9D9"></g>
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         stroke="#D9D9D9"
         fill="#D9D9D9"
-        stroke-width="0.1"
+        strokeWidth="0.1"
       ></g>
       <g id="SVGRepo_iconCarrier">
         {' '}

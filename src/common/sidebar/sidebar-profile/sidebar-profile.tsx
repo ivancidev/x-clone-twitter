@@ -31,7 +31,9 @@ export const SidebarProfile = ({
           @{nickname}
         </span>
       </div>
-      <MoreIcon />
+      <span className='hidden lg:block'>
+        <MoreIcon />
+      </span>
     </Link>
   );
 };
