@@ -1,50 +1,93 @@
-# React + TypeScript + Vite
+# x-clone-twitter 👨‍💻
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es un proyecto de clon de Twitter desarrollado con React + TS y Vite. Utiliza varias bibliotecas y herramientas modernas como Chakra UI, Material UI, React Router, y Swiper para ofrecer una experiencia de usuario fluida y moderna. El proyecto permite interactuar con la publicacion de post, simulando la experiencia de Twitter.
 
-Currently, two official plugins are available:
+## Screenshots 📷
+#### Home  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[![Captura-de-pantalla-2025-01-04-220702.png](https://i.postimg.cc/jjyDyPBB/Captura-de-pantalla-2025-01-04-220702.png)](https://postimg.cc/wtTxpyqk)
 
-## Expanding the ESLint configuration
+#### Post with emojis
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+[![Captura-de-pantalla-2025-01-04-221252.png](https://i.postimg.cc/1X34xT4Z/Captura-de-pantalla-2025-01-04-221252.png)](https://postimg.cc/Fdwh3TjP)
 
-- Configure the top-level `parserOptions` property like this:
+#### Post with images and gifs
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+[![Captura-de-pantalla-2025-01-04-221529.png](https://i.postimg.cc/YqJ28jN7/Captura-de-pantalla-2025-01-04-221529.png)](https://postimg.cc/ZCxh5bDs)
+
+[![Captura-de-pantalla-2025-01-04-221630.png](https://i.postimg.cc/2ShktmTZ/Captura-de-pantalla-2025-01-04-221630.png)](https://postimg.cc/Js7Cyffr)
+
+[![Captura-de-pantalla-2025-01-04-221650.png](https://i.postimg.cc/g0pzF5BB/Captura-de-pantalla-2025-01-04-221650.png)](https://postimg.cc/RWP5wPmc)
+
+
+# Funcionalidad de la Web
+
+## Descripción
+
+La web permite a los usuarios publicar posts, agregar emojis, buscar y agregar gifs, y cargar imágenes. Además, ofrece una interfaz para crear encuestas que los usuarios pueden responder. Esta aplicación está construida con un backend en Node.js y Express utilizando TypeScript, y se conecta a una base de datos MongoDB para almacenar los datos.
+
+## Funcionalidades 👨‍💻
+
+### Publicación de Posts 
+
+El usuario puede escribir un post en un campo de texto, y el sistema permite agregar contenido adicional a ese post como emojis, gifs e imágenes. La publicación se guarda en la base de datos MongoDB y se muestra en el feed de publicaciones de la aplicación.
+
+- **Escribir el post**: El usuario puede escribir cualquier contenido que desee compartir.
+- **Seleccionar Emojis**: El sistema permite seleccionar emojis para agregar al post. Se utiliza la librería [React Emoji Picker](https://www.npmjs.com/package/emoji-picker-react) para la selección de emojis.
+- **Buscar y Agregar GIFs**: El usuario puede buscar y agregar gifs a su publicación. Esto se logra utilizando la API de [Giphy](https://developers.giphy.com/) junto con la librería [Giphy JS Fetch API](https://www.npmjs.com/package/@giphy/js-fetch-api).
+- **Agregar Imágenes**: El usuario puede cargar imágenes desde su dispositivo o mediante enlaces externos.
+
+### UI de Encuestas
+
+Los usuarios pueden crear encuestas dentro de sus publicaciones. Las encuestas permiten añadir opciones de respuesta aun esta como interfaz no tiene funcionalidad. 
+
+### Backend
+
+El backend está construido con Node.js y Express utilizando TypeScript. El servidor maneja las solicitudes de la web, interactúa con la base de datos MongoDB y maneja la lógica de las publicaciones, emojis, gifs, imágenes y encuestas. Puedes acceder al backend en el siguiente enlace: [Backend API](https://x-clone-backend-a633.onrender.com/api).
+
+
+### Flujo de Trabajo
+
+1. **El usuario escribe un post**: Al iniciar sesión, el usuario accede a la interfaz de publicación.
+2. **Selecciona emojis**: El usuario puede hacer clic en un ícono de emoji que abre el selector de emojis.
+3. **Buscar gifs**: El usuario tiene la opción de buscar gifs usando la API de Giphy. Al seleccionar un gif, se agrega automáticamente al post.
+4. **Agregar imágenes**: El usuario puede adjuntar imágenes desde su computadora o pegar un enlace directo a una imagen externa.
+5. **Crear encuesta**: Si el usuario desea agregar una encuesta, puede crear varias opciones de respuesta.
+6. **Publicar**: El post con emojis, gifs, imágenes y encuesta (si es el caso) se guarda en la base de datos MongoDB y se muestra en el feed de publicaciones.
+
+### Backend: Endpoints
+
+- **POST /create-publication**: Crea una nueva publicación con texto, emojis, gifs, imágenes y encuestas.
+- **GET /publications**: Obtiene todas las publicaciones almacenadas en la base de datos.
+
+## Variables de Entorno
+
+Para que la aplicación funcione correctamente, necesitarás configurar las siguientes variables de entorno en tu archivo `.env` en la raíz del proyecto.
+
+```env
+VITE_GIPHY_API_KEY='your-api-key'
+VITE_API_URL='api-url-del-backend'
+VITE_CLOUDINARY_URL='your-cloudinary-url'
+VITE_CLOUDINARY_UPLOAD_PRESET='your-upload-preset'
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+## Instalación
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+1. Clona el repositorio:
+
+   ```
+   git clone https://github.com/ivancidev/x-clone-twitter.git
+   ```
+
+2. Instala las dependencias:
+    ``` 
+    cd x-clone-twitter
+    npm install
+    ```
+
+3. Ejecutar:
+    ```
+    npm run dev
+    ```
+
