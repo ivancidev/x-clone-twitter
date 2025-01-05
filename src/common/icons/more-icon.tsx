@@ -1,6 +1,6 @@
 export const MoreIcon = () => {
   return (
-    <span className="cursor-pointer">
+    <span className="cursor-pointer mt-2 sm:mt-0">
       <svg
         width="20"
         height="20"

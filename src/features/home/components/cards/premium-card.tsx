@@ -6,7 +6,7 @@ export const PremiumCard = () => {
       <h3 className="font-bold text-lg text-white font-interRegular28">
         Try Premium for free today
       </h3>
-      <p className="text-sm text-gray-600 font-interRegular18 mt-2 mb-1">
+      <p className="text-sm text-gray-600 font-interRegular18 mt-2 mb-3">
         Upgrade your experience with less ads, power tools, and more with
         Premium.
       </p>

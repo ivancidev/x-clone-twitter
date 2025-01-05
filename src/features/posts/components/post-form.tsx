@@ -97,11 +97,11 @@ export const PostForm = () => {
 
   const charPercentage = Math.min((text.length / maxCharacters) * 100, 100);
   return (
-    <section className="flex p-4 space-x-4">
+    <section className="flex p-4 space-x-4 bg-twitter-dark w-full border-gray-700 border-[1px]">
       <img
         src="https://randomuser.me/api/portraits/men/75.jpg"
         alt="User Avatar"
-        className="w-12 h-12 rounded-full"
+        className="w-10 h-10 rounded-full sm:h-12 sm:w-12"
       />
       <div className="flex flex-col w-full">
         <TexTarea text={text} handleChange={handleChange} />
@@ -110,7 +110,7 @@ export const PostForm = () => {
           handleRemoveImage={handleRemoveImage}
         />
         <div className="flex items-center justify-between mt-2">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <span>
               <label htmlFor="file-upload" className="cursor-pointer">
                 <MediaIcon />
@@ -143,7 +143,7 @@ export const PostForm = () => {
             <ScheduleIcon />
             <LocationIcon />
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 mr-12 md:mr-0">
             {text.length > 0 && (
               <ProgressCircleRoot value={charPercentage} size="xs">
                 <ProgressCircleRing
