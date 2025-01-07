@@ -33,7 +33,7 @@ export const EmojiPickerComponent = ({
   }, [showEmoji]);
 
   return (
-    <div className="cursor-pointer relative">
+    <div className="flex justify-center cursor-pointer relative">
       <span
         onClick={(event) => {
           event.stopPropagation();
@@ -43,8 +43,16 @@ export const EmojiPickerComponent = ({
         <EmojiIcon />
       </span>
       {showEmoji && (
-        <div className="absolute z-10" ref={emojiPickerRef}>
-          <EmojiPicker onEmojiClick={handleEmojiClick} theme={Theme.DARK} />
+        <div
+          ref={emojiPickerRef}
+          className="absolute top-full mt-2 z-10 bg-white dark:bg-gray-800 rounded-lg shadow-lg 
+             w-60 sm:w-72 max-h-80 border border-gray-300 dark:border-gray-700"
+        >
+          <EmojiPicker
+            onEmojiClick={handleEmojiClick}
+            theme={Theme.DARK}
+            lazyLoadEmojis={true}
+          />
         </div>
       )}
     </div>
