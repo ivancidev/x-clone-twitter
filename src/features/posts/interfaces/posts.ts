@@ -1,9 +1,9 @@
 export interface Post {
-  id: string;
+  _id: string;
   description: string;
-  name: string;
-  username: string;
+  name?: string;
+  username?: string;
   createdAt: string;
-  avatarUrl: string;
-  imgPost: string;
+  avatarUrl?: string;
+  images: string[];
 }
