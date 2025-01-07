@@ -1,4 +1,5 @@
 import { config } from '@/config/env-config';
+import { User } from '../interfaces/user';
 
 export const uploadImagesToCloudinary = async (images: File[]) => {
   const uploadedUrls: string[] = [];
@@ -24,13 +25,18 @@ export const uploadImagesToCloudinary = async (images: File[]) => {
   return uploadedUrls;
 };
 
-export const createPost = async (text: string, images: string[]) => {
+export const createPost = async (
+  text: string,
+  images: string[],
+  user: User,
+) => {
+  const { name, avatarUrl, username } = user;
   const response = await fetch(`${config.API_URL}/create-publication`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ text, images }),
+    body: JSON.stringify({ text, images, name, username, avatarUrl }),
   });
 
   if (!response.ok) {
