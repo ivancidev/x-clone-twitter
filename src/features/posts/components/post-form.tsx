@@ -20,6 +20,8 @@ import {
   createPost,
   uploadImagesToCloudinary,
 } from '../services/cloudinary-service';
+import { Alert, CircularProgress, Snackbar } from '@mui/material';
+import { users } from '../data/users';
 
 const maxCharacters = 200;
 const maxImages = 4;
@@ -31,6 +33,11 @@ export const PostForm = () => {
   const [isGifModalOpen, setGifModalOpen] = useState<boolean>(false);
   const [isPollModalOpen, setPollModalOpen] = useState<boolean>(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
+  const [isLoadingProgress, setLoadingProgress] = useState<boolean>(false);
+  const [alert, setAlert] = useState<{
+    message: string;
+    type: 'success' | 'error' | '';
+  }>({ message: '', type: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -84,14 +91,20 @@ export const PostForm = () => {
   };
 
   const handlePostSubmit = async () => {
+    setLoadingProgress(true);
+    const randomUser = users[Math.floor(Math.random() * users.length)];
     try {
       const uploaderUrls = await uploadImagesToCloudinary(imagesToUpload);
-      await createPost(text, uploaderUrls);
+      await createPost(text, uploaderUrls, randomUser);
       setText('');
       setImagePreviews([]);
       setImagesToUpload([]);
+      setAlert({ message: 'Post created successfully', type: 'success' });
     } catch (error) {
       console.error(error);
+      setAlert({ message: 'Error creating post', type: 'error' });
+    } finally {
+      setLoadingProgress(false);
     }
   };
 
@@ -152,9 +165,16 @@ export const PostForm = () => {
               </ProgressCircleRoot>
             )}
             <Button
-              label="Post"
+              label={
+                isLoadingProgress ? <CircularProgress size={30} /> : 'Post'
+              }
+              isLoading={isLoadingProgress}
               onClick={handlePostSubmit}
-              isDesabled={text.length === 0 || text.length > maxCharacters}
+              isDesabled={
+                (text.length === 0 && imagePreviews.length === 0) ||
+                text.length > maxCharacters ||
+                imagePreviews.length > maxImages
+              }
               variant="secondary"
             />
           </div>
@@ -171,6 +191,15 @@ export const PostForm = () => {
         onClose={() => setPollModalOpen(false)}
         onSubmit={handlePollSubmit}
       />
+      <Snackbar
+        open={!!alert.message}
+        autoHideDuration={3000}
+        onClose={() => setAlert({ message: '', type: '' })}
+      >
+        <Alert variant="filled" severity={alert.type || 'info'}>
+          {alert.message}
+        </Alert>
+      </Snackbar>
     </section>
   );
 };
