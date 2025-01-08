@@ -14,6 +14,7 @@ import {
   Button,
 } from '../../common';
 import { AddPostIcon } from '../../common/icons/add-post-icon';
+import { Link } from 'react-router-dom';
 export const Sidebar = () => {
   const [path, setPath] = useState(window.location.pathname);
 
@@ -83,14 +84,17 @@ export const Sidebar = () => {
             onClick={() => handlePath('/groups')}
             path={path}
           />
-          <div className="flex justify-center cursor-pointer">
+          <Link
+            to="/post"
+            className="flex justify-center cursor-pointer"
+          >
             <div className="block lg:hidden">
               <AddPostIcon />
             </div>
             <div className="hidden lg:block">
               <Button label="Post" onClick={() => console.log('Post')} />
             </div>
-          </div>
+          </Link>
         </nav>
         <SidebarProfile
           name="John Doe"

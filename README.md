@@ -1,24 +1,25 @@
 # x-clone-twitter 👨‍💻
 
+[![Captura-de-pantalla-2025-01-07-215408.png](https://i.postimg.cc/htS32gt2/Captura-de-pantalla-2025-01-07-215408.png)](https://postimg.cc/PPR4qgZD)
+
 Este es un proyecto de clon de Twitter desarrollado con React + TS y Vite. Utiliza varias bibliotecas y herramientas modernas como Chakra UI, Material UI, React Router, y Swiper para ofrecer una experiencia de usuario fluida y moderna. El proyecto permite interactuar con la publicacion de post, simulando la experiencia de Twitter.
 
 ## Screenshots 📷
 #### Home  
 
-[![Captura-de-pantalla-2025-01-04-220702.png](https://i.postimg.cc/jjyDyPBB/Captura-de-pantalla-2025-01-04-220702.png)](https://postimg.cc/wtTxpyqk)
+[![Captura-de-pantalla-2025-01-07-214810.png](https://i.postimg.cc/zB9c7gyh/Captura-de-pantalla-2025-01-07-214810.png)](https://postimg.cc/62fc5TL6)
 
 #### Post with emojis
 
-[![Captura-de-pantalla-2025-01-04-221252.png](https://i.postimg.cc/1X34xT4Z/Captura-de-pantalla-2025-01-04-221252.png)](https://postimg.cc/Fdwh3TjP)
+[![Captura-de-pantalla-2025-01-07-214955.png](https://i.postimg.cc/sx70NgWN/Captura-de-pantalla-2025-01-07-214955.png)](https://postimg.cc/8fkHFDtR)
 
 #### Post with images and gifs
 
-[![Captura-de-pantalla-2025-01-04-221529.png](https://i.postimg.cc/YqJ28jN7/Captura-de-pantalla-2025-01-04-221529.png)](https://postimg.cc/ZCxh5bDs)
+[![Captura-de-pantalla-2025-01-07-215142.png](https://i.postimg.cc/05w3Qc40/Captura-de-pantalla-2025-01-07-215142.png)](https://postimg.cc/7bqXtMw5)
 
-[![Captura-de-pantalla-2025-01-04-221630.png](https://i.postimg.cc/2ShktmTZ/Captura-de-pantalla-2025-01-04-221630.png)](https://postimg.cc/Js7Cyffr)
+[![Captura-de-pantalla-2025-01-07-215315.png](https://i.postimg.cc/65VmVTt7/Captura-de-pantalla-2025-01-07-215315.png)](https://postimg.cc/Tpw0fdyG)
 
-[![Captura-de-pantalla-2025-01-04-221650.png](https://i.postimg.cc/g0pzF5BB/Captura-de-pantalla-2025-01-04-221650.png)](https://postimg.cc/RWP5wPmc)
-
+[![Captura-de-pantalla-2025-01-07-215600.png](https://i.postimg.cc/43y2T5tt/Captura-de-pantalla-2025-01-07-215600.png)](https://postimg.cc/cKqBRfF4)
 
 # Funcionalidad de la Web
 
@@ -44,7 +45,6 @@ Los usuarios pueden crear encuestas dentro de sus publicaciones. Las encuestas p
 ### Backend
 
 El backend está construido con Node.js y Express utilizando TypeScript. El servidor maneja las solicitudes de la web, interactúa con la base de datos MongoDB y maneja la lógica de las publicaciones, emojis, gifs, imágenes y encuestas. Puedes acceder al backend en el siguiente enlace: [Backend API](https://x-clone-backend-a633.onrender.com/api).
-
 
 ### Flujo de Trabajo
 
@@ -90,4 +90,3 @@ VITE_CLOUDINARY_UPLOAD_PRESET='your-upload-preset'
     ```
     npm run dev
     ```
-
