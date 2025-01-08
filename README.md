@@ -21,7 +21,6 @@ Este es un proyecto de clon de Twitter desarrollado con React + TS y Vite. Utili
 
 [![Captura-de-pantalla-2025-01-07-215600.png](https://i.postimg.cc/43y2T5tt/Captura-de-pantalla-2025-01-07-215600.png)](https://postimg.cc/cKqBRfF4)
 
-
 # Funcionalidad de la Web
 
 ## Descripción
@@ -46,7 +45,6 @@ Los usuarios pueden crear encuestas dentro de sus publicaciones. Las encuestas p
 ### Backend
 
 El backend está construido con Node.js y Express utilizando TypeScript. El servidor maneja las solicitudes de la web, interactúa con la base de datos MongoDB y maneja la lógica de las publicaciones, emojis, gifs, imágenes y encuestas. Puedes acceder al backend en el siguiente enlace: [Backend API](https://x-clone-backend-a633.onrender.com/api).
-
 
 ### Flujo de Trabajo
 
