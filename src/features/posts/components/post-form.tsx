@@ -110,7 +110,7 @@ export const PostForm = () => {
 
   const charPercentage = Math.min((text.length / maxCharacters) * 100, 100);
   return (
-    <section className="flex p-4 space-x-4 bg-twitter-dark w-full border-gray-700 border-[1px]">
+    <section className="flex p-4 space-x-4 bg-twitter-dark w-full">
       <img
         src="https://randomuser.me/api/portraits/men/75.jpg"
         alt="User Avatar"

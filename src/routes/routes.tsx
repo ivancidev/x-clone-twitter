@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Explore, Hero } from '../features';
+import { Explore, Hero, PostForm } from '../features';
 import { Root } from './root';
 import { NotFoundPages } from './not-found-pages';
 
@@ -16,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: '/explore',
         element: <Explore />,
+      },
+      {
+        path: '/post',
+        element: <PostForm />,
       },
     ],
   },
