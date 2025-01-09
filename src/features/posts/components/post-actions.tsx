@@ -21,7 +21,7 @@ export const PostActions = () => {
       />
       <Action
         icon={<ReactIcon />}
-        label="5.7k"
+        label="555k"
         onClick={() => console.log('Like')}
       />
       <Action
